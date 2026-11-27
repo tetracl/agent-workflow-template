@@ -82,21 +82,21 @@ host started the reviewers.
 
 ## Reviewers
 
-Task reviews and both gate passes use Claude Fable at high effort, each
+Task reviews and both gate passes use Claude Opus at extra-high effort, each
 reviewer in a fresh read-only context, one per reviewer and round, given
 the brief, the commit, the base branch and the pull request description
 as a file.
 
 - **T3 Code.** Start each brief as its own delegated task
-  (`delegate_task`, provider `claudeAgent`, the newest Claude Fable model,
-  `effort: high`, isolation `worktree`).
+  (`delegate_task`, provider `claudeAgent`, the newest Claude Opus model,
+  `effort: xhigh`, isolation `worktree`).
 - **Herdr.** Check out the commit in a worktree of its own,
   `git worktree add --detach .claude/worktrees/<name> <commit>`, and start
   the reviewer there as your child terminal, with the task in the launch:
 
   ```sh
   hc run --bg --name <name> --cwd .claude/worktrees/<name> \
-    claude --model fable --effort high \
+    claude --model opus --effort xhigh \
     "Read and follow <brief>. Commit <sha>, base <branch>, pull request \
   description in <file>. Read-only, start no agents. Send your report \
   with hc send $HC_TERMINAL_ID when done or stuck."
@@ -112,7 +112,7 @@ as a file.
 - **Neither.** Start a fresh read-only subagent with the same model and
   effort.
 
-If Claude Fable cannot be started, use the strongest read-only reviewer
+If Claude Opus cannot be started, use the strongest read-only reviewer
 available and say so in the review comment.
 
 ## Merging
