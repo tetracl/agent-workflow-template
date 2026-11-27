@@ -73,12 +73,17 @@ find out where you run, and use that host's tools for every helper:
 | Host | You run there when | Helpers are started with |
 | --- | --- | --- |
 | T3 Code | the `t3-code` tools (`delegate_task`) are available | `delegate_task` |
-| Herdr | `$HC_TERMINAL_ID` is set and `hc` is on the path | `hc run`; read `hc --skill` first |
+| Herdr | `$HC_TERMINAL_ID` is set and `hc` is on the path | `hc run` |
 | neither | none of the above | your own read-only subagents |
 
 `printenv HC_TERMINAL_ID; command -v hc` answers the Herdr question. If
 both T3 Code and Herdr apply, use T3 Code. Say in each review comment which
 host started the reviewers.
+
+When you run inside Herdr, run `~/.local/bin/hc --skill` at the start of
+the session and read its output. It teaches how to use Herdr's
+orchestration tools: starting agents, sending them tasks, waiting for them
+and collecting their results.
 
 ## Reviewers
 
